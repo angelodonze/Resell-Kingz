@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resell Kingz – Premium Supplier & Vendor Lists</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ───────── RESET & ROOT ───────── */
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --gold:        #D4AF37;
+  --gold-light:  #F2D76E;
+  --gold-dim:    #A07B1A;
+  --gold-glow:   rgba(212,175,55,.35);
+  --gold-tint:   rgba(212,175,55,.08);
+  --bg:          #080808;
+  --surface:     #111111;
+  --surface2:    #181818;
+  --border:      rgba(212,175,55,.22);
+  --txt:         #F0EDE8;
+  --txt-muted:   #8A8580;
+}
+
+html { scroll-behavior:smooth; }
+
+body {
+  font-family:'Inter', sans-serif;
+  background:var(--bg);
+  color:var(--txt);
+  line-height:1.6;
+  min-height:100vh;
+  /* very faint gold-grain texture */
+  background-image:
+    radial-gradient(ellipse at 20% 50%, rgba(212,175,55,.04) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 20%, rgba(212,175,55,.03) 0%, transparent 50%);
+}
+
+/* ═══════════════════════════════════ HEADER ═══ */
+.header {
+  position:sticky; top:0; z-index:900;
+  background:linear-gradient(180deg,#000 60%,#0c0c0c);
+  border-bottom:1px solid var(--border);
+  box-shadow:0 2px 24px rgba(0,0,0,.7);
+}
+.header-inner {
+  max-width:1200px; margin:0 auto;
+  padding:16px 28px;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:16px; flex-wrap:wrap;
+}
+/* logo */
+.logo { display:flex; align-items:center; gap:14px; text-decoration:none; }
+.logo-avatar {
+  width:50px; height:50px; border-radius:50%;
+  border:2px solid var(--gold);
+  box-shadow:0 0 10px var(--gold-glow);
+  object-fit:cover;
+}
+.logo-name {
+  font-family:'Cinzel',serif;
+  font-size:21px; font-weight:700; letter-spacing:2.5px;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dim));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+}
+/* socials */
+.header-socials { display:flex; gap:10px; }
+.social-chip {
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--gold-tint); border:1px solid var(--border);
+  color:var(--gold); padding:8px 18px; border-radius:20px;
+  text-decoration:none; font-size:13px; font-weight:600;
+  transition:background .2s, color .2s, box-shadow .2s;
+}
+.social-chip:hover {
+  background:var(--gold); color:#000;
+  box-shadow:0 0 14px var(--gold-glow);
+}
+
+/* ═══════════════════════════════════ HERO ═══ */
+.hero {
+  text-align:center;
+  padding:80px 24px 52px;
+  background:linear-gradient(180deg,#000 0%,#0a0a0a 55%,var(--bg) 100%);
+  position:relative;
+}
+.hero-accent { /* thin gold line above title */
+  width:56px; height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+  margin:0 auto 30px;
+}
+.hero h1 {
+  font-family:'Cinzel',serif;
+  font-size:clamp(34px,6vw,52px);
+  font-weight:700; letter-spacing:5px; line-height:1.15;
+  background:linear-gradient(135deg,var(--gold-light) 0%,var(--gold) 45%,var(--gold-dim) 100%);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:18px;
+}
+.hero p {
+  color:var(--txt-muted); font-size:16px; font-weight:300;
+  max-width:600px; margin:0 auto;
+}
+
+/* ═══════════════════════════════════ TABS ═══ */
+.tabs-row {
+  display:flex; justify-content:center; gap:14px;
+  padding:0 24px 44px;
+}
+.tab-btn {
+  background:var(--surface); border:1px solid var(--border);
+  color:var(--txt-muted);
+  padding:14px 42px; border-radius:40px;
+  font-family:'Cinzel',serif; font-size:13px; font-weight:600;
+  letter-spacing:2px; text-transform:uppercase;
+  cursor:pointer;
+  transition:background .25s, color .25s, border-color .25s, box-shadow .25s;
+}
+.tab-btn:hover { border-color:var(--gold); color:var(--gold); }
+.tab-btn.active {
+  background:linear-gradient(135deg,var(--gold-dim),var(--gold));
+  border-color:var(--gold); color:#000;
+  box-shadow:0 4px 22px var(--gold-glow);
+}
+
+/* ═══════════════════════════════════ PANELS ═══ */
+.panel { display:none; }
+.panel.active { display:block; }
+.panel-inner { max-width:1100px; margin:0 auto; padding:0 28px 90px; }
+
+/* section heading */
+.sec-head { text-align:center; margin-bottom:44px; }
+.sec-head h2 {
+  font-family:'Cinzel',serif; font-size:26px; font-weight:600;
+  letter-spacing:3px; color:var(--gold); margin-bottom:10px;
+}
+.sec-head .gold-rule {
+  width:44px; height:1px; background:var(--gold); margin:0 auto 12px; opacity:.6;
+}
+.sec-head p { color:var(--txt-muted); font-size:14px; }
+
+/* ═══════════════════════════════════ VENDOR CARDS ═══ */
+.vendor-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(310px,1fr));
+  gap:24px;
+}
+.vendor-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:16px; padding:28px;
+  position:relative; overflow:hidden;
+  transition:transform .3s, border-color .3s, box-shadow .3s;
+}
+/* shimmer stripe */
+.vendor-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);
+}
+.vendor-card:hover {
+  transform:translateY(-5px);
+  border-color:var(--gold);
+  box-shadow:0 10px 36px rgba(212,175,55,.18);
+}
+/* header row */
+.v-head { display:flex; align-items:center; gap:18px; margin-bottom:16px; }
+.v-icon {
+  width:68px; height:68px; border-radius:12px;
+  border:2px solid var(--border); object-fit:cover; flex-shrink:0;
+}
+.v-icon-box {
+  width:68px; height:68px; border-radius:12px; flex-shrink:0;
+  border:2px solid var(--border); background:var(--surface2);
+  display:flex; align-items:center; justify-content:center; font-size:32px;
+}
+.v-title h3 {
+  font-family:'Cinzel',serif; font-size:17px; color:var(--gold-light);
+  letter-spacing:.5px; margin-bottom:4px;
+}
+.v-price { font-size:23px; font-weight:700; color:var(--gold); }
+/* body */
+.v-desc { color:var(--txt-muted); font-size:14px; line-height:1.65; margin-bottom:18px; }
+.v-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:20px; }
+.v-tag {
+  background:var(--gold-tint); border:1px solid var(--border);
+  color:var(--gold); padding:6px 14px; border-radius:16px;
+  font-size:12px; font-weight:600;
+}
+/* CTA */
+.btn-gold {
+  display:block; width:100%;
+  background:linear-gradient(135deg,var(--gold-dim),var(--gold));
+  color:#000; border:none;
+  padding:14px 24px; border-radius:24px;
+  font-family:'Cinzel',serif; font-weight:700;
+  font-size:13px; letter-spacing:1.8px; text-transform:uppercase;
+  cursor:pointer;
+  transition:filter .2s, box-shadow .2s;
+}
+.btn-gold:hover { filter:brightness(1.12); box-shadow:0 4px 20px var(--gold-glow); }
+
+/* ═══════════════════════════════════ CATALOG FILTERS ═══ */
+.filters {
+  display:flex; justify-content:center;
+  flex-wrap:wrap; gap:10px; margin-bottom:38px;
+}
+.filter-btn {
+  background:var(--surface); border:1px solid var(--border);
+  color:var(--txt-muted); padding:9px 22px; border-radius:22px;
+  font-size:13px; font-weight:600; cursor:pointer;
+  transition:border-color .2s, color .2s, background .2s;
+}
+.filter-btn:hover { border-color:var(--gold); color:var(--gold); }
+.filter-btn.active {
+  background:var(--gold-tint); border-color:var(--gold); color:var(--gold);
+}
+
+/* ═══════════════════════════════════ PRODUCT CARDS ═══ */
+.product-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:22px;
+}
+.product-card {
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:14px; padding:18px;
+  transition:transform .3s, border-color .3s, box-shadow .3s;
+}
+.product-card:hover {
+  transform:translateY(-4px);
+  border-color:var(--gold);
+  box-shadow:0 8px 28px rgba(212,175,55,.14);
+}
+.p-img {
+  width:100%; height:210px;
+  background:var(--surface2); border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  font-size:44px; margin-bottom:14px;
+  border:1px solid rgba(212,175,55,.07);
+}
+.p-badges { display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px; }
+.badge {
+  padding:3px 10px; border-radius:10px; font-size:11px; font-weight:600;
+}
+.badge-src { background:var(--gold-tint); color:var(--gold); }
+.badge-cat { background:rgba(255,255,255,.04); color:var(--txt-muted); }
+.p-name {
+  font-size:15px; font-weight:600; color:var(--txt);
+  line-height:1.4; margin-bottom:6px; min-height:40px;
+}
+.p-desc {
+  font-size:13px; color:var(--txt-muted);
+  line-height:1.45; margin-bottom:14px; min-height:36px;
+}
+.btn-outline {
+  display:block; width:100%;
+  background:transparent; border:1px solid var(--gold);
+  color:var(--gold); padding:9px 18px; border-radius:18px;
+  font-size:13px; font-weight:600; cursor:pointer;
+  transition:background .2s, color .2s, box-shadow .2s;
+}
+.btn-outline:hover {
+  background:var(--gold); color:#000;
+  box-shadow:0 3px 16px var(--gold-glow);
+}
+
+/* ═══════════════════════════════════ FOOTER ═══ */
+.footer {
+  background:#000; border-top:1px solid var(--border);
+  padding:44px 24px; text-align:center;
+}
+.footer-logo {
+  font-family:'Cinzel',serif; font-size:19px; letter-spacing:3px;
+  background:linear-gradient(135deg,var(--gold-light),var(--gold),var(--gold-dim));
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+  margin-bottom:18px;
+}
+.footer-socials { display:flex; justify-content:center; gap:12px; margin-bottom:18px; }
+.footer p { color:var(--txt-muted); font-size:13px; }
+.footer .copy { color:#444; font-size:11px; margin-top:10px; }
+
+/* ═══════════════════════════════════ RESPONSIVE ═══ */
+@media(max-width:680px){
+  .vendor-grid { grid-template-columns:1fr; }
+  .product-grid { grid-template-columns:1fr 1fr; }
+  .tab-btn { padding:12px 26px; font-size:11px; letter-spacing:1.5px; }
+  .header-inner { flex-direction:column; align-items:center; }
+}
+@media(max-width:380px){
+  .product-grid { grid-template-columns:1fr; }
+  .tabs-row { flex-direction:column; align-items:center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <img src="https://ugc.production.linktr.ee/e7f11dff-d28b-4d15-b214-583934a96263_create-a-solo-for-Resell-kingz-with-a-crown.jpeg?io=true&size=avatar-v3_0" alt="Resell Kingz" class="logo-avatar">
+      <span class="logo-name">👑 RESELL KINGZ</span>
+    </a>
+    <div class="header-socials">
+      <a href="https://tiktok.com/@amdflips" class="social-chip" target="_blank">📱 TikTok</a>
+      <a href="https://api.whatsapp.com/send?phone=18166279671" class="social-chip" target="_blank">💬 WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-accent"></div>
+  <h1>RESELL KINGZ</h1>
+  <p>Your trusted source for verified vendor lists and high-quality luxury products. Start your reselling journey with confidence.</p>
+</section>
+
+<!-- ═══ CENTERED TABS ═══ -->
+<div class="tabs-row">
+  <button class="tab-btn active"  onclick="switchTab('vendor-lists',this)">Vendor Lists</button>
+  <button class="tab-btn"         onclick="switchTab('us-supplier',this)">US Supplier Catalog</button>
+</div>
+
+<!-- ═══════════════════════════════════ VENDOR LISTS PANEL ═══ -->
+<div id="vendor-lists" class="panel active">
+  <div class="panel-inner">
+    <div class="sec-head">
+      <h2>PREMIUM VENDOR LISTS</h2>
+      <div class="gold-rule"></div>
+      <p>Instant access to verified wholesale suppliers</p>
+    </div>
+
+    <div class="vendor-grid">
+
+      <!-- Clothing -->
+      <div class="vendor-card">
+        <div class="v-head">
+          <img src="https://ugc.production.linktr.ee/51338181-a7ae-47ed-b0f1-e560b4ec8e8d_Sp5der-Hoodies-100-Cotton-Custom-Hoodie-with-Street-Spider-Emblem.png?io=true&size=thumbnail-stack_v1_0" alt="Clothing" class="v-icon">
+          <div class="v-title"><h3>Luxury Clothing Vendors</h3><div class="v-price">$12.99</div></div>
+        </div>
+        <p class="v-desc">Connect with verified suppliers for premium streetwear, designer brands, and high-quality apparel. Access Sp5der, Hellstar, BAPE, Nike, and more top-tier clothing brands at wholesale prices.</p>
+        <div class="v-tags">
+          <span class="v-tag">✓ Verified Suppliers</span>
+          <span class="v-tag">✓ Wholesale Pricing</span>
+          <span class="v-tag">✓ Designer Brands</span>
+          <span class="v-tag">✓ Instant Access</span>
+        </div>
+        <button class="btn-gold" onclick="alert('Add your payment link for Clothing Vendor List')">Get Access Now</button>
+      </div>
+
+      <!-- Cologne -->
+      <div class="vendor-card">
+        <div class="v-head">
+          <img src="https://ugc.production.linktr.ee/7f9d6d29-0f78-492d-87c5-62866554eb20_create-a-neo-tech-image-of-a-cologne-bottle-clip-art.jpeg?io=true&size=thumbnail-stack_v1_0" alt="Cologne" class="v-icon">
+          <div class="v-title"><h3>Luxury Cologne Vendors</h3><div class="v-price">$9.99</div></div>
+        </div>
+        <p class="v-desc">Access trusted fragrance suppliers offering top-quality designer colognes and perfumes. Mugler, Dolce &amp; Gabbana, and premium fragrance collections available.</p>
+        <div class="v-tags">
+          <span class="v-tag">✓ High-Quality Fragrances</span>
+          <span class="v-tag">✓ Competitive Prices</span>
+          <span class="v-tag">✓ Fast Delivery</span>
+          <span class="v-tag">✓ Multiple Brands</span>
+        </div>
+        <button class="btn-gold" onclick="alert('Add your payment link for Cologne Vendor List')">Get Access Now</button>
+      </div>
+
+      <!-- Shoes -->
+      <div class="vendor-card">
+        <div class="v-head">
+          <div class="v-icon-box">👟</div>
+          <div class="v-title"><h3>Premium Shoe Vendors</h3><div class="v-price">$14.99</div></div>
+        </div>
+        <p class="v-desc">Discover verified suppliers for Nike, Adidas, New Balance, Yeezy, Jordan, and luxury designer footwear. Access top-tier wholesale sources for your shoe reselling business.</p>
+        <div class="v-tags">
+          <span class="v-tag">✓ Premium Sneakers</span>
+          <span class="v-tag">✓ Designer Footwear</span>
+          <span class="v-tag">✓ Wholesale Access</span>
+          <span class="v-tag">✓ Verified Sources</span>
+        </div>
+        <button class="btn-gold" onclick="alert('Add your payment link for Shoe Vendor List')">Get Access Now</button>
+      </div>
+
+      <!-- Handbags -->
+      <div class="vendor-card">
+        <div class="v-head">
+          <div class="v-icon-box">👜</div>
+          <div class="v-title"><h3>Luxury Handbag Vendors</h3><div class="v-price">$11.99</div></div>
+        </div>
+        <p class="v-desc">Connect with premium handbag suppliers offering Louis Vuitton, Chanel, Gucci, Dior, Hermès, and more designer bags. Build your luxury goods business with trusted sources.</p>
+        <div class="v-tags">
+          <span class="v-tag">✓ Designer Brands</span>
+          <span class="v-tag">✓ Quality Guaranteed</span>
+          <span class="v-tag">✓ Wholesale Pricing</span>
+          <span class="v-tag">✓ Trending Styles</span>
+        </div>
+        <button class="btn-gold" onclick="alert('Add your payment link for Handbag Vendor List')">Get Access Now</button>
+      </div>
+
+    </div><!-- /vendor-grid -->
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════ US SUPPLIER PANEL ═══ -->
+<div id="us-supplier" class="panel">
+  <div class="panel-inner">
+    <div class="sec-head">
+      <h2>US SUPPLIER CATALOG</h2>
+      <div class="gold-rule"></div>
+      <p>Shop directly from our verified US supplier &bull; Fast shipping &bull; Quality guaranteed</p>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" onclick="filterProducts('all',this)">All</button>
+      <button class="filter-btn" onclick="filterProducts('perfume',this)">Perfumes</button>
+      <button class="filter-btn" onclick="filterProducts('handbags',this)">Handbags</button>
+      <button class="filter-btn" onclick="filterProducts('clothing',this)">Clothing</button>
+      <button class="filter-btn" onclick="filterProducts('shoes',this)">Shoes</button>
+      <button class="filter-btn" onclick="filterProducts('accessories',this)">Accessories</button>
+      <button class="filter-btn" onclick="filterProducts('wallets',this)">Wallets</button>
+      <button class="filter-btn" onclick="filterProducts('scarves',this)">Scarves</button>
+      <button class="filter-btn" onclick="filterProducts('hats',this)">Hats</button>
+      <button class="filter-btn" onclick="filterProducts('electronics',this)">Electronics</button>
+    </div>
+
+    <div class="product-grid" id="productGrid"></div>
+  </div>
+</div>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-logo">👑 RESELL KINGZ</div>
+  <div class="footer-socials">
+    <a href="https://tiktok.com/@amdflips" class="social-chip" target="_blank">📱 TikTok</a>
+    <a href="https://api.whatsapp.com/send?phone=18166279671" class="social-chip" target="_blank">💬 WhatsApp</a>
+  </div>
+  <p>Premium supplier resources and high-quality products for resellers</p>
+  <p class="copy">© 2026 Resell Kingz. All rights reserved.</p>
+</footer>
+
+<!-- ═══════════════════════════════════ JS ═══ -->
+<script>
+/* ── tab switch ── */
+function switchTab(id, btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  if(id==='us-supplier' && !document.getElementById('productGrid').children.length) loadProducts();
+}
+
+/* ── product data ── */
+const P=[
+  // PERFUMES
+  {n:"Mugler Angel Eau de Parfum",c:"perfume",s:"amber86",e:"🌟",d:"Iconic celestial fragrance with patchouli, vanilla & caramel notes. A timeless classic that never goes out of style."},
+  {n:"Mugler Angel Elixir",c:"perfume",s:"amber86",e:"✨",d:"An intensified, richer version of Angel. Deep, seductive & unforgettable scent experience."},
+  {n:"Mugler Angel Nova",c:"perfume",s:"amber86",e:"💫",d:"A modern twist on Angel. Fresh raspberry & pink pepper make it bold & distinctly feminine."},
+  {n:"Dolce & Gabbana L'Imperatrice",c:"perfume",s:"amber86",e:"🍉",d:"A refreshing watermelon & kiwi blend that delivers everyday elegance with a fruity punch."},
+  {n:"Dolce & Gabbana Light Blue Summer",c:"perfume",s:"amber86",e:"🌊",d:"Mediterranean escape in a bottle — citrus & floral notes capture a sun-drenched summer dream."},
+  {n:"Dolce & Gabbana Lemon",c:"perfume",s:"amber86",e:"🍋",d:"Zesty, fresh & vibrant lemon fragrance. Perfect for energising your morning routine."},
+  {n:"Dolce & Gabbana Orange",c:"perfume",s:"amber86",e:"🍊",d:"Sweet citrus burst with delicate orange blossom. Radiant & joyful for any occasion."},
+  {n:"Dolce & Gabbana Pineapple",c:"perfume",s:"amber86",e:"🍍",d:"Tropical pineapple paradise. An exotic & luxurious fragrance that transports you instantly."},
+  {n:"Azzaro The Most Wanted Parfum",c:"perfume",s:"amber86",e:"🔥",d:"Intense and captivating men's cologne. A sophisticated, bold scent with spicy & woody depth."},
+  {n:"Viktor & Rolf Spicebomb Extreme",c:"perfume",s:"amber86",e:"💣",d:"Tobacco & vanilla notes create an explosive luxury experience. The ultimate bold men's fragrance."},
+  {n:"Armani Stronger With You",c:"perfume",s:"amber86",e:"💪",d:"Warm spicy chestnut, lavender & vanilla in one commanding scent. Made for the modern gentleman."},
+  {n:"Premium Designer Cologne Collection",c:"perfume",s:"amber86",e:"👔",d:"A curated selection of top-tier designer colognes. Sophisticated & masculine profiles."},
+  {n:"Luxury Eau de Parfum Gift Set",c:"perfume",s:"amber86",e:"🎁",d:"Multiple premium fragrances bundled together. The perfect gift for any fragrance lover."},
+  {n:"Elite Men's Cologne",c:"perfume",s:"amber86",e:"💼",d:"Bold, powerful & commanding. Crafted for the modern gentleman who demands nothing but excellence."},
+  {n:"Premium Women's Perfume",c:"perfume",s:"amber86",e:"💐",d:"Elegant floral & fruity notes wrapped in timeless femininity. Everyday luxury at its finest."},
+  {n:"Exclusive Limited-Edition Perfume",c:"perfume",s:"amber86",e:"👑",d:"Rare designer fragrances you won't find anywhere else. Stand out with limited-edition scents."},
+  // HANDBAGS
+  {n:"Louis Vuitton Classic Monogram Tote",c:"handbags",s:"sheltonzhang",e:"👜",d:"The iconic LV monogram canvas tote. A timeless luxury status symbol that pairs with everything."},
+  {n:"Chanel Classic Flap Bag",c:"handbags",s:"sheltonzhang",e:"🖤",d:"Elegant quilted leather with the signature CC turn-lock. The ultimate luxury statement piece."},
+  {n:"Gucci Marmont Shoulder Bag",c:"handbags",s:"sheltonzhang",e:"💚",d:"Signature double-G logo on quilted leather. Italian craftsmanship meets modern street style."},
+  {n:"Dior Saddle Bag",c:"handbags",s:"sheltonzhang",e:"🎨",d:"Trendy curved saddle silhouette that's become a fashion-forward icon. Bold & recognisable."},
+  {n:"Hermès Birkin Style Bag",c:"handbags",s:"sheltonzhang",e:"💎",d:"The ultimate luxury investment piece. Rare, highly sought-after & instantly recognisable."},
+  {n:"Prada Nylon Crossbody",c:"handbags",s:"sheltonzhang",e:"⬛",d:"Minimalist Italian elegance in durable nylon. Sophisticated & perfect for on-the-go style."},
+  {n:"YSL Kate Chain Bag",c:"handbags",s:"sheltonzhang",e:"✨",d:"A sleek evening bag finished with a luxe gold chain. Chic & endlessly versatile."},
+  {n:"Balenciaga City Bag",c:"handbags",s:"sheltonzhang",e:"🔥",d:"Edgy moto-inspired design with soft leather. A celebrity favourite for streetwear."},
+  {n:"Celine Luggage Tote",c:"handbags",s:"sheltonzhang",e:"💼",d:"Structured sophistication with a boxy silhouette. Perfect work & travel companion."},
+  {n:"Burberry Check Tote",c:"handbags",s:"sheltonzhang",e:"🍂",d:"Classic British heritage with the signature plaid check. Timeless and instantly iconic."},
+  {n:"Loewe Puzzle Bag",c:"handbags",s:"sheltonzhang",e:"🧩",d:"A geometric masterpiece — artistic, colourful & beautifully functional luxury."},
+  {n:"Valentino Rockstud Bag",c:"handbags",s:"sheltonzhang",e:"⭐",d:"Edgy pyramid stud detailing. Where rock-chic meets high fashion on the runway."},
+  {n:"Goyard Saint Louis Tote",c:"handbags",s:"sheltonzhang",e:"🎯",d:"Exclusive French luxury with a hand-painted chevron pattern. Rare & ultra-coveted."},
+  {n:"Miu Miu Mini Crossbody",c:"handbags",s:"sheltonzhang",e:"💕",d:"Playful & youthful luxury from Prada's trendy sister brand. Compact & versatile."},
+  {n:"D&G Dauphine Bag",c:"handbags",s:"sheltonzhang",e:"🌸",d:"Italian luxury with a floral twist. Feminine, bold & full of personality."},
+  {n:"Coach Signature Tote",c:"handbags",s:"sheltonzhang",e:"🏷️",d:"Premium American craftsmanship. Durable leather & timeless signature design."},
+  {n:"Armani Exchange Bag",c:"handbags",s:"sheltonzhang",e:"🖤",d:"Sleek Italian design at an accessible price point. Perfect everyday carry."},
+  {n:"Marc Jacobs Snapshot Bag",c:"handbags",s:"sheltonzhang",e:"📸",d:"Fun, colourful & iconic. Marc Jacobs' most recognisable crossbody style."},
+  // CLOTHING
+  {n:"Sp5der Hoodie",c:"clothing",s:"sheltonzhang",e:"🕷️",d:"The streetwear hype beast essential. Bold web graphics on premium cotton — instantly recognisable."},
+  {n:"Nike Tech Fleece Jogger Set",c:"clothing",s:"sheltonzhang",e:"✓",d:"Premium athletic comfort with a modern slim fit. Performance fabric that looks great off the court."},
+  {n:"Hellstar Graphic Tee",c:"clothing",s:"sheltonzhang",e:"⭐",d:"Edgy street fashion with bold, eye-catching graphics printed on premium cotton."},
+  {n:"BAPE Camo Hoodie",c:"clothing",s:"sheltonzhang",e:"🦍",d:"The iconic ape camouflage pattern. A Japanese streetwear legend that never goes out of style."},
+  {n:"Denim Tears Jeans",c:"clothing",s:"sheltonzhang",e:"👖",d:"A cultural streetwear statement piece. Premium denim with unique artistic detailing."},
+  {n:"Eric Emanuel Basketball Shorts",c:"clothing",s:"sheltonzhang",e:"🏀",d:"Luxury basketball-inspired shorts in vibrant colourways. Premium quality & bold style."},
+  {n:"Canada Goose Parka",c:"clothing",s:"sheltonzhang",e:"🧥",d:"Arctic-ready luxury warmth with premium down fill and the iconic badge. Built to last."},
+  {n:"Moncler Puffer Jacket",c:"clothing",s:"sheltonzhang",e:"⛷️",d:"Alpine luxury meets modern urban style. Lightweight, warm & endlessly versatile."},
+  {n:"The North Face Jacket",c:"clothing",s:"sheltonzhang",e:"⛰️",d:"Outdoor performance meets street style. Durable, weather-proof & always trending."},
+  {n:"Stone Island Sweatshirt",c:"clothing",s:"sheltonzhang",e:"🧭",d:"Italian textile innovation with the signature compass badge. A collector's favourite."},
+  {n:"Gallery Dept Tee",c:"clothing",s:"sheltonzhang",e:"🎨",d:"Artist-designed streetwear with a vintage-inspired aesthetic. Each piece feels unique."},
+  {n:"AMIRI Jeans",c:"clothing",s:"sheltonzhang",e:"💎",d:"LA luxury denim with distressed details and a rock-star aesthetic that demands attention."},
+  {n:"Purple Jeans Designer Denim",c:"clothing",s:"sheltonzhang",e:"💜",d:"Premium streetwear denim in bold purple. Perfect fit & statement-making colour."},
+  {n:"Chrome Hearts Hoodie",c:"clothing",s:"sheltonzhang",e:"🖤",d:"Rock luxury with gothic cross detailing. Premium quality & an instantly edgy vibe."},
+  {n:"Supreme Box Logo Tee",c:"clothing",s:"sheltonzhang",e:"📦",d:"The streetwear grail. Iconic box logo that holds serious resale value."},
+  {n:"Burberry Trench Coat",c:"clothing",s:"sheltonzhang",e:"☂️",d:"British heritage luxury in a timeless rainwear silhouette. Elegance redefined."},
+  {n:"Arc'teryx Shell Jacket",c:"clothing",s:"sheltonzhang",e:"🏔️",d:"Technical outdoor luxury where performance meets premium style. Built for anything."},
+  {n:"KSUBI Jeans",c:"clothing",s:"sheltonzhang",e:"👖",d:"Australian denim brand with a raw, rebellious edge. Perfect distressed fit."},
+  {n:"Ami Paris Knit Sweater",c:"clothing",s:"sheltonzhang",e:"🇫🇷",d:"French casual luxury. Relaxed fit with a refined Parisian touch."},
+  {n:"Ralph Lauren Polo Shirt",c:"clothing",s:"sheltonzhang",e:"🐴",d:"Classic American preppy style. Premium cotton & timeless polo silhouette."},
+  {n:"Lululemon Athletica Set",c:"clothing",s:"sheltonzhang",e:"🧘",d:"Premium activewear that transitions seamlessly from gym to street."},
+  {n:"Alo Yoga Leggings",c:"clothing",s:"sheltonzhang",e:"🌿",d:"Luxury athleisure with a buttery-soft feel. Flattering fit & elevated style."},
+  // SHOES
+  {n:"Nike Air Jordan 4",c:"shoes",s:"sheltonzhang",e:"🏀",d:"A basketball legend and collector's favourite. Classic silhouette with massive resale appeal."},
+  {n:"Adidas Yeezy Boost 350",c:"shoes",s:"sheltonzhang",e:"👟",d:"Kanye's iconic sneaker combining comfort with hype culture status. Always in demand."},
+  {n:"New Balance 550",c:"shoes",s:"sheltonzhang",e:"⚪",d:"Retro basketball-inspired style in a clean, versatile silhouette. An everyday essential."},
+  {n:"Louis Vuitton Trainer",c:"shoes",s:"sheltonzhang",e:"👞",d:"A luxury sneaker statement with subtle monogram details & premium leather construction."},
+  {n:"Dior B23 High-Top",c:"shoes",s:"sheltonzhang",e:"👟",d:"Oblique print canvas that blends high-fashion with streetwear seamlessly."},
+  {n:"Balenciaga Triple S Sneaker",c:"shoes",s:"sheltonzhang",e:"🔥",d:"The chunky dad shoe that took over fashion. Bold, Instagram-worthy & instantly iconic."},
+  {n:"Gucci Ace Sneaker",c:"shoes",s:"sheltonzhang",e:"🐝",d:"Luxury casual sneaker featuring the iconic bee & green stripe detail."},
+  {n:"Nike Dunk Low",c:"shoes",s:"sheltonzhang",e:"✓",d:"A skate culture classic with endless colourways. Versatile & always trending."},
+  {n:"Air Jordan 1 High OG",c:"shoes",s:"sheltonzhang",e:"🏀",d:"The OG sneaker grail. Timeless silhouette & the king of resale value."},
+  {n:"Yeezy Foam Runner",c:"shoes",s:"sheltonzhang",e:"🌊",d:"A futuristic, one-of-a-kind silhouette built for all-day comfort."},
+  {n:"UGG Classic Short Boot",c:"shoes",s:"sheltonzhang",e:"🧸",d:"Cozy luxury comfort with sheepskin lining. A timeless winter wardrobe staple."},
+  {n:"Alexander McQueen Oversized Sneaker",c:"shoes",s:"sheltonzhang",e:"👑",d:"Luxury chunky sneaker with an oversized sole and ultra-clean design."},
+  {n:"Rick Owens DRKSHDW",c:"shoes",s:"sheltonzhang",e:"🖤",d:"Avant-garde footwear that pushes the boundaries of fashion-forward design."},
+  {n:"Converse Chuck Taylor All Star",c:"shoes",s:"sheltonzhang",e:"⭐",d:"The classic canvas sneaker. Timeless, affordable & endlessly customisable."},
+  {n:"Golden Goose Superstar",c:"shoes",s:"sheltonzhang",e:"✨",d:"Distressed luxury with an Italian-crafted vintage aesthetic. Beautifully imperfect."},
+  {n:"Christian Louboutin Heels",c:"shoes",s:"sheltonzhang",e:"💋",d:"The red sole luxury icon. The ultimate feminine statement shoe on any red carpet."},
+  {n:"Birkenstock Arizona Sandal",c:"shoes",s:"sheltonzhang",e:"🌻",d:"Timeless German-crafted sandal. Comfort meets effortless summer style."},
+  {n:"Bottega Veneta Sneaker",c:"shoes",s:"sheltonzhang",e:"🍂",d:"Intrecciato-inspired luxury sneaker. Understated yet unmistakably high-fashion."},
+  {n:"Valentino Rockstud Sneaker",c:"shoes",s:"sheltonzhang",e:"💠",d:"Signature pyramid studs on a modern sneaker silhouette. Edgy & glamorous."},
+  {n:"YSL Saint Laurent Sneaker",c:"shoes",s:"sheltonzhang",e:"⚡",d:"Parisian cool-girl energy in sneaker form. Sleek, bold & always in style."},
+  // ACCESSORIES – belts
+  {n:"Louis Vuitton Monogram Belt",c:"accessories",s:"sheltonzhang",e:"🔥",d:"The iconic LV buckle belt — an absolute luxury waist accessory essential."},
+  {n:"Gucci GG Marmont Belt",c:"accessories",s:"sheltonzhang",e:"🔶",d:"The double-G buckle belt. A designer statement piece everyone wants."},
+  {n:"Hermès H Belt",c:"accessories",s:"sheltonzhang",e:"🔷",d:"Subtle luxury flex with a reversible design. Truly timeless & refined."},
+  {n:"Dior Belt",c:"accessories",s:"sheltonzhang",e:"🖤",d:"Sleek Dior buckle hardware. Elevate any outfit instantly."},
+  {n:"Fendi Belt",c:"accessories",s:"sheltonzhang",e:"🏷️",d:"Bold FF logo buckle — a confident Italian luxury accessory."},
+  {n:"Versace Medusa Belt",c:"accessories",s:"sheltonzhang",e:"🏛️",d:"Iconic Medusa head buckle. Greek mythology meets Italian fashion."},
+  {n:"Prada Belt",c:"accessories",s:"sheltonzhang",e:"⬛",d:"Minimalist Prada hardware in premium leather. Effortlessly chic."},
+  {n:"Loewe Anagram Belt",c:"accessories",s:"sheltonzhang",e:"🧩",d:"Geometric logo hardware on supple leather. Artisanal & understated."},
+  // sunglasses
+  {n:"Chanel Sunglasses",c:"accessories",s:"sheltonzhang",e:"🕶️",d:"Iconic quilted CC detail on frames. Glamorous eye protection for any occasion."},
+  {n:"Dior Oversized Sunglasses",c:"accessories",s:"sheltonzhang",e:"😎",d:"Statement oversized eyewear. Fashion-forward & incredibly face-flattering."},
+  {n:"Prada Sunglasses",c:"accessories",s:"sheltonzhang",e:"🕶️",d:"Italian eyewear elegance with sleek lines. Sophisticated yet bold."},
+  {n:"Louis Vuitton Sunglasses",c:"accessories",s:"sheltonzhang",e:"👓",d:"Luxury LV logo frames with premium lenses. Sun protection meets status."},
+  {n:"Gucci Oversized Frames",c:"accessories",s:"sheltonzhang",e:"🐝",d:"Bold GG logo sunglasses. A glamorous Italian take on eyewear."},
+  {n:"Cartier Sunglasses",c:"accessories",s:"sheltonzhang",e:"💎",d:"Gold-tone frames with signature Cartier detailing. Jewelry-level luxury."},
+  {n:"Oakley Sport Sunglasses",c:"accessories",s:"sheltonzhang",e:"🏄",d:"Performance sport frames with premium polarised lenses. Min order 10 pcs."},
+  // jewelry
+  {n:"Cartier Love Bracelet",c:"accessories",s:"sheltonzhang",e:"💍",d:"The luxury jewelry icon. Screw-motif design symbolising eternal love & commitment."},
+  {n:"Van Cleef & Arpels Alhambra Necklace",c:"accessories",s:"sheltonzhang",e:"🍀",d:"Delicate four-leaf clover charm in gold. The epitome of refined French luxury."},
+  {n:"Chrome Hearts Cross Ring",c:"accessories",s:"sheltonzhang",e:"💎",d:"Rock luxury jewelry with gothic cross detailing in sterling silver."},
+  {n:"Cartier Love Ring",c:"accessories",s:"sheltonzhang",e:"💍",d:"The matching Love collection ring. Screw detail & endless symbolism."},
+  {n:"Bulgari Serpenti Bracelet",c:"accessories",s:"sheltonzhang",e:"🐍",d:"Italian serpent-coil design in gold. Bold, sculptural & unforgettable."},
+  // key rings
+  {n:"Louis Vuitton Key Ring",c:"accessories",s:"sheltonzhang",e:"🔑",d:"Monogram hardware key charm. A small LV luxury touch for your keys or bag."},
+  {n:"Gucci Key Ring",c:"accessories",s:"sheltonzhang",e:"🔑",d:"Double-G logo hardware. A subtle luxury accessory with big brand recognition."},
+  {n:"Chrome Hearts Key Ring",c:"accessories",s:"sheltonzhang",e:"🖤",d:"Gothic cross charm in sterling silver. Rock luxury for your everyday carry."},
+  // WALLETS
+  {n:"Louis Vuitton Monogram Wallet",c:"wallets",s:"sheltonzhang",e:"👛",d:"Classic LV monogram canvas bifold. The wallet that defines luxury status."},
+  {n:"Chanel Classic Wallet",c:"wallets",s:"sheltonzhang",e:"🖤",d:"Quilted leather with CC clasp closure. Feminine luxury in your pocket."},
+  {n:"Dior Saddle Wallet",c:"wallets",s:"sheltonzhang",e:"🎨",d:"Matching saddle-style wallet in signature Dior design. Complete the look."},
+  {n:"Gucci GG Marmont Wallet",c:"wallets",s:"sheltonzhang",e:"💚",d:"Quilted leather with the iconic double-G logo. Small but mighty."},
+  {n:"Fendi Peekaboo Wallet",c:"wallets",s:"sheltonzhang",e:"🏷️",d:"Playful peek-a-boo design in premium Italian leather."},
+  {n:"Prada Saffiano Wallet",c:"wallets",s:"sheltonzhang",e:"⬛",d:"Classic cross-hatch Saffiano leather. Minimalist luxury at its finest."},
+  {n:"YSL Cassandre Wallet",c:"wallets",s:"sheltonzhang",e:"⚡",d:"Sleek YSL monogram hardware on smooth leather. Parisian cool-girl essential."},
+  {n:"Celine Smooth Leather Wallet",c:"wallets",s:"sheltonzhang",e:"🏷️",d:"Understated French luxury in buttery-smooth leather. Simple & refined."},
+  // SCARVES
+  {n:"Louis Vuitton Monogram Scarf",c:"scarves",s:"sheltonzhang",e:"🧣",d:"Silk luxury with the classic LV monogram print. Versatile styling accessory."},
+  {n:"Gucci GG Scarf",c:"scarves",s:"sheltonzhang",e:"🍂",d:"Signature GG pattern in silk. Wrap it, tie it — endless styling possibilities."},
+  {n:"Hermès Twilly Scarf",c:"scarves",s:"sheltonzhang",e:"🧣",d:"The iconic Hermès silk ribbon. Small but instantly recognisable."},
+  {n:"Burberry Classic Check Scarf",c:"scarves",s:"sheltonzhang",e:"🍂",d:"British heritage signature check pattern in cashmere. Timeless warmth."},
+  {n:"Chanel Silk Scarf",c:"scarves",s:"sheltonzhang",e:"🖤",d:"CC-embossed silk elegance. A classic Chanel accessory for any wardrobe."},
+  {n:"Dior Silk Scarf",c:"scarves",s:"sheltonzhang",e:"🌸",d:"Floral print silk square. French luxury in a versatile accessory."},
+  {n:"Fendi Logo Scarf",c:"scarves",s:"sheltonzhang",e:"🏷️",d:"FF monogram in premium wool & silk blend. Bold brand statement."},
+  {n:"Loewe Anagram Scarf",c:"scarves",s:"sheltonzhang",e:"🧩",d:"Geometric logo print in luxurious silk. Artisanal Spanish craftsmanship."},
+  {n:"Arc'teryx Logo Scarf",c:"scarves",s:"sheltonzhang",e:"🏔️",d:"Outdoor luxury with the iconic bird logo. Functional & fashionable."},
+  // HATS
+  {n:"Canada Goose Wool Hat",c:"hats",s:"sheltonzhang",e:"🧢",d:"Premium wool knit with the iconic Arctic Programme patch. Winter essential."},
+  {n:"Moncler Logo Beanie",c:"hats",s:"sheltonzhang",e:"🏔️",d:"Alpine luxury knit beanie. Warm, stylish & instantly recognisable."},
+  {n:"Louis Vuitton Monogram Cap",c:"hats",s:"sheltonzhang",e:"🎩",d:"LV monogram canvas baseball cap. Street style meets luxury heritage."},
+  {n:"Gucci Knit Beanie",c:"hats",s:"sheltonzhang",e:"🧶",d:"GG logo knit in premium wool. A warm luxury accessory for the colder months."},
+  {n:"Dior Baseball Cap",c:"hats",s:"sheltonzhang",e:"🎩",d:"Embroidered Dior logo on a sleek cap. Casual luxury at its best."},
+  {n:"Chrome Hearts Cross Beanie",c:"hats",s:"sheltonzhang",e:"✝️",d:"Gothic cross detailing on a premium knit. Rock luxury for your head."},
+  {n:"Balenciaga Logo Hat",c:"hats",s:"sheltonzhang",e:"🧢",d:"Bold Balenciaga text on a streetwear-ready cap. Understated & cool."},
+  {n:"Burberry Check Hat",c:"hats",s:"sheltonzhang",e:"🍂",d:"The signature check pattern in a bucket or cap style. British heritage warmth."},
+  // ELECTRONICS
+  {n:"Dyson Supersonic Hair Dryer",c:"electronics",s:"amber86",e:"💨",d:"Professional-grade styling tool with intelligent heat control. Fast drying & salon results at home."},
+  {n:"Premium Hair Styling Tool",c:"electronics",s:"amber86",e:"✨",d:"Salon-quality straightener or curler at home. Multiple heat settings for any hair type."},
+  {n:"JBL Bluetooth Speaker",c:"electronics",s:"amber86",e:"🔊",d:"Powerful, portable sound. Waterproof design makes it perfect for any party or adventure."},
+  {n:"Apple AirPods Pro",c:"electronics",s:"amber86",e:"🎧",d:"Active noise cancellation & spatial audio. The premium wireless audio experience."},
+  {n:"Wireless Earbuds Elite",c:"electronics",s:"amber86",e:"🎵",d:"True wireless freedom with superior sound quality. All-day battery life included."}
+];
+
+/* category labels */
+const CL={perfume:"🌸 Perfume",handbags:"👜 Handbag",clothing:"👕 Clothing",shoes:"👟 Shoes",accessories:"💎 Accessories",electronics:"🔌 Electronics",wallets:"👛 Wallet",scarves:"🧣 Scarf",hats:"🧢 Hat"};
+
+/* ── render all cards ── */
+function loadProducts(){
+  const g=document.getElementById('productGrid');
+  g.innerHTML='';
+  P.forEach(p=>{
+    const card=document.createElement('div');
+    card.className='product-card';
+    card.dataset.category=p.c;
+    card.innerHTML=`
+      <div class="p-img">${p.e}</div>
+      <div class="p-badges">
+        <span class="badge badge-src">📦 ${p.s}</span>
+        <span class="badge badge-cat">${CL[p.c]||p.c}</span>
+      </div>
+      <div class="p-name">${p.n}</div>
+      <div class="p-desc">${p.d}</div>
+      <button class="btn-outline" onclick="wa('${p.n.replace(/'/g,`\\'`)}')">Contact for Price</button>`;
+    g.appendChild(card);
+  });
+}
+
+/* ── filter ── */
+function filterProducts(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.product-card').forEach(c=>{
+    c.style.display=(cat==='all'||c.dataset.category===cat)?'block':'none';
+  });
+}
+
+/* ── whatsapp ── */
+function wa(name){
+  const m=encodeURIComponent(`Hi! I'm interested in: ${name}. What's the price and availability?`);
+  window.open(`https://api.whatsapp.com/send?phone=18166279671&text=${m}`,'_blank');
+}
+</script>
+</body>
+</html>
